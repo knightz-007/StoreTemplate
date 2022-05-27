@@ -31,7 +31,7 @@ namespace WebAPI
             services.AddControllers(options =>
             {
                 options.RespectBrowserAcceptHeader = true;
-            }).AddXmlSerializerFormatters()
+            }).AddXmlDataContractSerializerFormatters()
             .AddMvcOptions(options => options.OutputFormatters.Add(new CsvOutputFormatter()));
             services.AddSwaggerGen(c =>
             {
