@@ -19,7 +19,6 @@ namespace Repository
         public List<Product> GetProducts() => ProductDAO.Instance.GetProductList();
 
         public void SaveProduct(Product p) => ProductDAO.Instance.AddProduct(p);
-;
         public void UpdateProduct(Product p) => ProductDAO.Instance.UpdateProduct(p);
     }
 }
