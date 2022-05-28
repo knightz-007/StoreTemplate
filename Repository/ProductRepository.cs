@@ -10,15 +10,14 @@ namespace Repository
 {
     public class ProductRepository : IProductRepository
     {
-        public void DeleteProduct(Product p) => ProductDAO.Instance.RemoveProduct(p);
+        public DataTransferObject.Product GetProductById(int id) => ProductDAO.Instance.GetProductByID(id);
+        public void DeleteProduct(DataTransferObject.Product p) => ProductDAO.Instance.RemoveProduct(p);
 
-        public List<Category> GetCategories() => CategoryDAO.GetCategories();
+        public List<BusinessObject.Category> GetCategories() => CategoryDAO.GetCategories();
 
-        public Product GetProductById(int id) => ProductDAO.Instance.GetProductByID(id);
+        public List<DataTransferObject.Product> GetProducts() => ProductDAO.Instance.GetProductList();
 
-        public List<Product> GetProducts() => ProductDAO.Instance.GetProductList();
-
-        public void SaveProduct(Product p) => ProductDAO.Instance.AddProduct(p);
-        public void UpdateProduct(Product p) => ProductDAO.Instance.UpdateProduct(p);
+        public void SaveProduct(DataTransferObject.Product p) => ProductDAO.Instance.AddProduct(p);
+        public void UpdateProduct(DataTransferObject.Product p) => ProductDAO.Instance.UpdateProduct(p);
     }
 }

@@ -5,8 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Category\" />
-    <Folder Include="Product\" />
+    <Compile Remove="Category\**" />
+    <Compile Remove="Product\**" />
+    <EmbeddedResource Remove="Category\**" />
+    <EmbeddedResource Remove="Product\**" />
+    <None Remove="Category\**" />
+    <None Remove="Product\**" />
   </ItemGroup>
 
 </Project>

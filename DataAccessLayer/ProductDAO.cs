@@ -1,4 +1,6 @@
-﻿using BusinessObject;
+﻿using AutoMapper;
+using BusinessObject;
+using DataTransferObject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +9,16 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer
 {
+    public class MappingProfile : Profile
+    {
+        public MappingProfile()
+        {
+            CreateMap<BusinessObject.Product, DataTransferObject.Product>();
+            CreateMap<DataTransferObject.Product, BusinessObject.Product>();
+            CreateMap<DataTransferObject.Category, BusinessObject.Category>();
+            CreateMap<BusinessObject.Category, DataTransferObject.Category>();
+        }
+    }
     public class ProductDAO
     {
         private static ProductDAO instance = null;
@@ -28,31 +40,57 @@ namespace DataAccessLayer
         }
 
 
-        public List<Product> GetProductList()
+        public List<DataTransferObject.Product> GetProductList()
         {
-            var listProducts = new List<Product>();
+            var listProducts = new List<DataTransferObject.Product>();
+            var listProducts1 = new List<BusinessObject.Product>();
             try
             {
                 using(var context = new MyStoreContext())
                 {
-                    listProducts = context.Products.ToList();
+                    listProducts1 = context.Products.ToList();
                 }
-            }catch(Exception e)
+                var config = new MapperConfiguration(cfg =>
+                {
+                    cfg.AddProfile(new MappingProfile());
+                });
+                var mapper = config.CreateMapper();
+
+                // Chuyển đổi danh sách Product qua danh sách ProductDto.
+                listProducts = listProducts1.Select
+                                 (
+                                   emp => mapper.Map<BusinessObject.Product, DataTransferObject.Product>(emp)
+                                 ).ToList();
+            }
+            catch(Exception e)
             {
                 throw new Exception(e.Message);
             }
             return listProducts;
         }
 
-        public Product GetProductByID(int productId)
+        public DataTransferObject.Product GetProductByID(int productId)
         {
-            Product product = new Product();
+            DataTransferObject.Product product = new DataTransferObject.Product();
+            BusinessObject.Product product1 = new BusinessObject.Product();
             try
             {
-                using(var context = new MyStoreContext())
+                using(var context = new BusinessObject.MyStoreContext())
                 {
-                    product = context.Products.SingleOrDefault(x => x.ProductId == productId);
+                    product1 = context.Products.SingleOrDefault(x => x.ProductId == productId);
                 }
+                var config = new MapperConfiguration(cfg =>
+                {
+                    cfg.AddProfile(new MappingProfile());
+                });
+                var mapper = config.CreateMapper();
+
+                // Chuyển đổi product qua  productdto.
+                product.ProductName = product1.ProductName;
+                product.ProductId = product1.ProductId;
+                product.UnitPrice = product1.UnitPrice;
+                product.CategoryId = product1.CategoryId;
+                product.UnitsInStock = product1.UnitsInStock;
             }
             catch (Exception ex)
             {
@@ -61,13 +99,19 @@ namespace DataAccessLayer
             return product;
         }
 
-        public void AddProduct(Product product)
+        public void AddProduct(DataTransferObject.Product product)
         {
             try
             {
-                using(var context = new MyStoreContext())
+                BusinessObject.Product product1 = new BusinessObject.Product();
+                product1.ProductName = product.ProductName;
+                product1.ProductId = product.ProductId;
+                product1.UnitPrice = product.UnitPrice;
+                product1.CategoryId = product.CategoryId;
+                product1.UnitsInStock = product.UnitsInStock;
+                using (var context = new MyStoreContext())
                 {
-                    context.Products.Add(product);
+                    context.Products.Add(product1);
                     context.SaveChanges();
                 }
             }
@@ -77,13 +121,13 @@ namespace DataAccessLayer
             }
         }
 
-        public void UpdateProduct(Product product)
+        public void UpdateProduct(DataTransferObject.Product product)
         {
             try
             {
                 using (var context = new MyStoreContext())
                 {
-                    context.Entry<Product>(product).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    context.Entry<DataTransferObject.Product>(product).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                     context.SaveChanges();
                 }
             }
@@ -93,7 +137,7 @@ namespace DataAccessLayer
             }
         }
 
-        public void RemoveProduct(Product product)
+        public void RemoveProduct(DataTransferObject.Product product)
         {
             try
             {

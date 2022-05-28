@@ -1,4 +1,5 @@
 ﻿using BusinessObject;
+using DataTransferObject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,9 +28,9 @@ namespace DataAccessLayer
                 }
             }
         }
-        public static List<Category> GetCategories()
+        public static List<BusinessObject.Category> GetCategories()
         {
-            var listCategory = new List<Category>();
+            var listCategory = new List<BusinessObject.Category>();
             try
             {
                 using (var context = new MyStoreContext())

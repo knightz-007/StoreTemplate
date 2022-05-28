@@ -1,4 +1,4 @@
-﻿using BusinessObject;
+﻿using DataTransferObject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +9,11 @@ namespace Repository
 {
     public interface IProductRepository
     {
-        void SaveProduct(Product p);
-        Product GetProductById(int id);
-        void DeleteProduct(Product p);
-        void UpdateProduct(Product p);
-        List<Category> GetCategories();
-        List<Product> GetProducts();
+        void SaveProduct(DataTransferObject.Product p);
+        DataTransferObject.Product GetProductById(int id);
+        void DeleteProduct(DataTransferObject.Product p);
+        void UpdateProduct(DataTransferObject.Product p);
+        List<BusinessObject.Category> GetCategories();
+        List<DataTransferObject.Product> GetProducts();
     }
 }
