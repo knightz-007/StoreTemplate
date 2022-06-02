@@ -29,7 +29,7 @@ namespace WebAPI
         {
 
             services.AddControllers(options =>
-            {
+            { 
                 options.RespectBrowserAcceptHeader = true;
             }).AddXmlDataContractSerializerFormatters()
             .AddMvcOptions(options => options.OutputFormatters.Add(new CsvOutputFormatter()));

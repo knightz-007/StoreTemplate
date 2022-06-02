@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "DataAcce
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{05E30F1A-DBA6-4AC7-AC5C-77ADADBC1125}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTransferObject", "DataTransferObject\DataTransferObject.csproj", "{C7586A6B-2770-46D2-BC31-F3B76BEE5004}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataTransferObject", "DataTransferObject\DataTransferObject.csproj", "{C7586A6B-2770-46D2-BC31-F3B76BEE5004}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ODataApi", "ODataApi\ODataApi.csproj", "{E65CFEBF-B92E-4C1C-B70B-4E378896DD04}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{C7586A6B-2770-46D2-BC31-F3B76BEE5004}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7586A6B-2770-46D2-BC31-F3B76BEE5004}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7586A6B-2770-46D2-BC31-F3B76BEE5004}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E65CFEBF-B92E-4C1C-B70B-4E378896DD04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E65CFEBF-B92E-4C1C-B70B-4E378896DD04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E65CFEBF-B92E-4C1C-B70B-4E378896DD04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E65CFEBF-B92E-4C1C-B70B-4E378896DD04}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
