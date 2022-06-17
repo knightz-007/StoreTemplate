@@ -1,6 +1,7 @@
 ﻿using DataTransferObject;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Formatter;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 using Repository;
@@ -26,9 +27,9 @@ namespace ODataApi.Controllers
 
         // GET: api/Products/5
         [EnableQuery]
-        public ActionResult GetProduct(int id)
+        public ActionResult GetProduct([FromODataUri]int key)
         {
-            var product = productRepo.GetProductById(id);
+            var product = productRepo.GetProductById(key);
 
             if (product == null)
             {
@@ -41,14 +42,14 @@ namespace ODataApi.Controllers
         // PUT: api/Products/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [EnableQuery]
-        public IActionResult PutProduct(int id, [FromBody]Product product)
+        public IActionResult PutProduct(int key, [FromBody]Product product)
         {
-            if (id != product.ProductId)
+            if (key != product.ProductId)
             {
                 return BadRequest();
             }
 
-            var temp = productRepo.GetProductById(id);
+            var temp = productRepo.GetProductById(key);
 
             if (product == null)
             {
@@ -71,9 +72,9 @@ namespace ODataApi.Controllers
 
         // DELETE: api/Products/5
         [EnableQuery]
-        public IActionResult DeleteProduct([FromBody]int id)
+        public IActionResult DeleteProduct([FromODataUri]int key)
         {
-            var p = productRepo.GetProductById(id);
+            var p = productRepo.GetProductById(key);
             if (p == null)
             {
                 return NotFound();
