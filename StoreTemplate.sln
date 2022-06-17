@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Re
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataTransferObject", "DataTransferObject\DataTransferObject.csproj", "{C7586A6B-2770-46D2-BC31-F3B76BEE5004}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ODataApi", "ODataApi\ODataApi.csproj", "{E65CFEBF-B92E-4C1C-B70B-4E378896DD04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ODataApi", "ODataApi\ODataApi.csproj", "{E65CFEBF-B92E-4C1C-B70B-4E378896DD04}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "JSView", "JSView", "{E385F3D3-8733-4519-892D-24C7B7E06158}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
